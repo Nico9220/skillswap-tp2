@@ -5,7 +5,6 @@
     <meta charset="utf-8">
     <title>SkillSwap Demo</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    {{-- Para salir del paso, uso Tailwind vía CDN (solo demo). --}}
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
@@ -21,6 +20,16 @@
         @if(session('ok'))
         <div class="mb-4 p-3 bg-green-100 text-green-700 rounded">{{ session('ok') }}</div>
         @endif
+
+        {{-- NUEVO: errores de validación --}}
+        @if($errors->any())
+        <div class="mb-4 p-3 bg-red-100 text-red-700 rounded">
+            <ul class="list-disc list-inside">
+                @foreach($errors->all() as $e) <li>{{ $e }}</li> @endforeach
+            </ul>
+        </div>
+        @endif
+
         @yield('content')
     </main>
 

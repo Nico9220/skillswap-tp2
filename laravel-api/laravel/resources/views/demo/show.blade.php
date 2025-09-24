@@ -20,18 +20,34 @@
         <form action="{{ route('demo.review.store') }}" method="POST" class="grid gap-3">
             @csrf
             <input type="hidden" name="ability_id" value="{{ $ability->id }}">
+
             <div>
-                <label class="block text-sm">Usuario (ID)</label>
-                <input name="user_id" type="number" class="w-full border rounded p-2" placeholder="2" required>
+                <label class="block text-sm">Usuario</label>
+                <select name="user_id" class="w-full border rounded p-2" required>
+                    <option value="">— Elegí un usuario —</option>
+                    @foreach($users as $u)
+                    <option value="{{ $u->id }}">{{ $u->name }} (ID {{ $u->id }})</option>
+                    @endforeach
+                </select>
             </div>
+
             <div>
-                <label class="block text-sm">Puntaje (1 a 5)</label>
-                <input name="puntaje" type="number" min="1" max="5" class="w-full border rounded p-2" required>
+                <label class="block text-sm">Puntaje</label>
+                <div class="flex gap-2">
+                    @for($i=1;$i<=5;$i++)
+                        <label class="inline-flex items-center gap-1">
+                        <input type="radio" name="puntaje" value="{{ $i }}" required>
+                        <span>⭐ {{ $i }}</span>
+                        </label>
+                        @endfor
+                </div>
             </div>
+
             <div>
                 <label class="block text-sm">Comentario</label>
                 <textarea name="comentario" class="w-full border rounded p-2" rows="3" placeholder="¡Muy bueno!"></textarea>
             </div>
+
             <button class="px-4 py-2 rounded bg-slate-900 text-white hover:bg-slate-800">Publicar</button>
         </form>
     </div>
@@ -46,7 +62,12 @@
                     <div class="text-sm text-slate-500">
                         Por <strong>{{ $r->user->name ?? 'Usuario' }}</strong>
                     </div>
-                    <div class="text-sm font-semibold">⭐ {{ $r->puntaje }}/5</div>
+                    {{-- Mostrar estrellas --}}
+                    <div class="text-sm">
+                        @for($i=1;$i<=5;$i++)
+                            <span>@if($i <= $r->puntaje) ⭐ @else ☆ @endif</span>
+                                @endfor
+                    </div>
                 </div>
                 @if($r->comentario)
                 <p class="mt-2 text-slate-700">{{ $r->comentario }}</p>
