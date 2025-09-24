@@ -7,59 +7,44 @@ use Illuminate\Http\Request;
 
 class AbilityController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
+        // trae user, reviews_count y promedio_puntaje por el $with / $withCount / appends del modelo
+        return Ability::query()->latest()->get();
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function store(Request $r)
     {
-        //
+        $data = $r->validate([
+            'user_id'     => 'required|exists:users,id',
+            'nombre'      => 'required|string|max:120',
+            'descripcion' => 'nullable|string',
+        ]);
+
+        $ability = Ability::create($data);
+        return response()->json($ability->fresh(), 201);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function show(Ability $habilidade) // tip: Laravel pluraliza en ruta; param se llama {habilidade}
     {
-        //
+        // $habilidade ya viene con relaciones por $with
+        return $habilidade->load('reviews.user:id,name');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Ability $ability)
+    public function update(Request $r, Ability $habilidade)
     {
-        //
+        $data = $r->validate([
+            'nombre'      => 'sometimes|required|string|max:120',
+            'descripcion' => 'nullable|string',
+        ]);
+
+        $habilidade->update($data);
+        return $habilidade->fresh();
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Ability $ability)
+    public function destroy(Ability $habilidade)
     {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Ability $ability)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Ability $ability)
-    {
-        //
+        $habilidade->delete();
+        return response()->noContent();
     }
 }

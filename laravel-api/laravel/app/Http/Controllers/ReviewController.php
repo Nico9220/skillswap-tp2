@@ -3,63 +3,56 @@
 namespace App\Http\Controllers;
 
 use App\Models\Review;
+use App\Models\Ability;
 use Illuminate\Http\Request;
 
 class ReviewController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public function index(Request $r)
     {
-        //
+        // Lista global de reseñas
+        return Review::with(['ability:id,nombre', 'user:id,name'])
+            ->latest()->get();
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function store(Request $r)
     {
-        //
+        $data = $r->validate([
+            'ability_id' => 'required|exists:abilities,id',
+            'user_id'    => 'required|exists:users,id',
+            'puntaje'    => 'required|integer|min:1|max:5',
+            'comentario' => 'nullable|string',
+        ]);
+
+        $review = Review::create($data);
+        return response()->json($review->load('ability:id,nombre', 'user:id,name'), 201);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function show(Review $reseña)
     {
-        //
+        return $reseña->load('ability:id,nombre', 'user:id,name');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Review $review)
+    public function update(Request $r, Review $reseña)
     {
-        //
+        $data = $r->validate([
+            'puntaje'   => 'sometimes|integer|min:1|max:5',
+            'comentario' => 'nullable|string',
+        ]);
+
+        $reseña->update($data);
+        return $reseña->load('ability:id,nombre', 'user:id,name');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Review $review)
+    public function destroy(Review $reseña)
     {
-        //
+        $reseña->delete();
+        return response()->noContent();
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Review $review)
+    // Extra: reseñas por habilidad
+    public function byAbility(Ability $ability)
     {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Review $review)
-    {
-        //
+        return $ability->reviews()->with('user:id,name')->latest()->get();
     }
 }
