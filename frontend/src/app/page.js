@@ -12,7 +12,7 @@ import Pricing from "../components/Pricing";
 export default function Home() {
   return (
     <div className="bg-white dark:bg-black">
-      <NextSeo
+      {/* <NextSeo
         title="Plutonium"
         description="Plutonium – where darkness meets the web."
         canonical="https://plutonium.vercel.app/"
@@ -33,9 +33,7 @@ export default function Home() {
           cardType: "summary_large_image",
         }}
       />
-      <Head>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+
       <Header />
       <section className="relative">
         <div className="px-4 pt-10 mx-auto max-w-7xl md:pt-16">
@@ -91,15 +89,11 @@ export default function Home() {
             </p>
           </div>
         </div>
-        {/* <div
-          style={{ backgroundImage: "url(/images/blur.png)" }}
-          className="absolute inset-0 w-full h-full bg-bottom bg-no-repeat bg-cover -z-1"
-        /> */}
       </section>
       <Sponsors />
       <Features />
       <Pricing />
-      <Footer />
+      <Footer /> */}
     </div>
   );
 }

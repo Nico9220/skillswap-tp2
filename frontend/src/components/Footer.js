@@ -1,9 +1,9 @@
 'use client';
-import { useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import Link from "next/link";
 
 export default function Footer() {
-  const router = useRouter();
+  const pathname = usePathname();
   return (
     <footer className="text-black dark:text-gray-300 body-font">
       <div className="container flex flex-col items-center px-10 pb-8 mx-auto border-t border-purple-600 dark:border-purple-300 sm:flex-row">
@@ -15,11 +15,7 @@ export default function Footer() {
         <div className="invisible h-5 mt-3 ml-4 border-l border-black md:visible dark:border-gray-300"></div>
         <Link
           className="flex items-center justify-center mt-3 font-medium title-font md:justify-start"
-          href={
-            router.pathname === "/"
-              ? `https://github.com/minor/plutonium/edit/main/pages/index.js`
-              : `https://github.com/minor/plutonium/edit/main/pages${router.pathname}.js`
-          }
+          href={"/"}
         >
           <span className="text-sm md:ml-5">Edit on GitHub</span>
         </Link>
