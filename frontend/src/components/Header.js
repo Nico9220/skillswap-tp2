@@ -18,7 +18,7 @@ export default function Header() {
       <div className="flex flex-col flex-wrap max-w-5xl p-2.5 mx-auto md:flex-row">
         <div className="flex flex-row items-center justify-between p-2 md:p-1">
           <Link href="/" className="mb-4 text-2xl font-medium text-black transition duration-300 hover:text-gray-300 dark:text-gray-300 dark:hover:text-white md:mb-0">
-            PLUTONIUM
+            SKILLSWAP
           </Link>
           <button
             className="px-3 py-1 pb-4 ml-auto text-black outline-none dark:text-gray-300 md:hidden"
@@ -51,19 +51,19 @@ export default function Header() {
         >
           <div className="flex flex-wrap items-center justify-center pt-1 pl-2 ml-1 space-x-8 md:space-x-16 md:mx-auto md:pl-14">
             <Link
-              href="/#features"
+              href="/#nosotros"
               className="text-black transition duration-300 dark:text-gray-300 hover:text-gray-300"
             >
-              Features
+              Nosotros
             </Link>
             <Link
-              href="/#pricing"
+              href="/#habilidades"
               className="text-black transition duration-300 dark:text-gray-300 hover:text-gray-300"
             >
-              Pricing
+              Habilidades
             </Link>
-            <Link href="/404" className="text-black transition duration-300 dark:text-gray-300 hover:text-gray-300">
-              Demo
+            <Link href="/PlantillaDefault" className="text-black transition duration-300 dark:text-gray-300 hover:text-gray-300">
+              Plantilla
             </Link>
           </div>
           <button
@@ -104,7 +104,7 @@ export default function Header() {
             target="_blank"
             className="invisible dark:hover:border-gray-500 hover:shadow-md transition duration-300 mr-4 text-black border px-3 py-1.5 rounded dark:text-gray-300 md:visible"
           >
-            Sign in
+            Iniciar sesión
           </Link>
           <Link
             href="#"
@@ -112,7 +112,7 @@ export default function Header() {
             target="_blank"
             className="invisible md:visible px-3 py-1.5 transition-colors hover:bg-gray-800 dark:hover:bg-gray-200 text-white dark:text-black bg-black dark:bg-white rounded"
           >
-            Sign up
+            Registrarse
           </Link>
         </div>
       </div>
