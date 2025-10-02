@@ -36,7 +36,7 @@ export default function Features() {
                 />
               </Link>
             </div>
-            <p className="mx-2 font-normal text-gray-500 dark:text-gray-400 text-md">
+            <div className="mx-2 font-normal text-gray-500 dark:text-gray-400 text-md">
               <ul className="mr-0 md:mr-10">
                 <li className="mb-2">
                   <span className="font-semibold">Conformance</span>: A system
@@ -61,7 +61,7 @@ export default function Features() {
                   updates
                 </li>
               </ul>
-            </p>
+            </div>
           </div>
           <div className="mb-10 space-y-6">
             <h1 className="text-xl font-bold text-center text-rose-600 dark:text-rose-300 md:text-2xl sm:text-left">
@@ -80,7 +80,7 @@ export default function Features() {
                 />
               </Link>
             </div>
-            <p className="mx-2 font-normal text-gray-500 dark:text-gray-400 text-md">
+            <div className="mx-2 font-normal text-gray-500 dark:text-gray-400 text-md">
               <ul className="mr-0 md:mr-10">
                 <li className="mb-2">
                   <span className="font-semibold">Just-in-Time Mode</span>: A
@@ -108,7 +108,7 @@ export default function Features() {
                   </span>
                 </li>
               </ul>
-            </p>
+            </div>
           </div>
           <div className="mb-10 space-y-6">
             <h1 className="text-xl font-bold text-center text-rose-600 dark:text-rose-300 md:text-2xl sm:text-left">
@@ -127,7 +127,7 @@ export default function Features() {
                 />
               </Link>
             </div>
-            <p className="mx-2 font-normal text-gray-500 dark:text-gray-400 text-md">
+            <div className="mx-2 font-normal text-gray-500 dark:text-gray-400 text-md">
               <ul className="mr-0 md:mr-10">
                 <li className="mb-2">
                   <Link
@@ -155,7 +155,7 @@ export default function Features() {
                   hook
                 </li>
               </ul>
-            </p>
+            </div>
           </div>
           <div className="mb-10 space-y-6">
             <h1 className="text-xl font-bold text-center text-rose-600 dark:text-rose-300 md:text-2xl sm:text-left">
@@ -174,7 +174,7 @@ export default function Features() {
                 />
               </Link>
             </div>
-            <p className="mx-2 font-normal text-gray-500 dark:text-gray-400 text-md">
+            <div className="mx-2 font-normal text-gray-500 dark:text-gray-400 text-md">
               <ul className="mr-0 md:mr-10">
                 <li className="mb-2">
                   <Link
@@ -204,7 +204,7 @@ export default function Features() {
                   should at least have access to a description & a title.
                 </li>
               </ul>
-            </p>
+            </div>
           </div>
         </div>
       </div>

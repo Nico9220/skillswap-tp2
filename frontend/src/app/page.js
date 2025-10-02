@@ -2,7 +2,6 @@ import Image from "next/image";
 import Usuarios from "@/components/Usuarios";
 import Head from "next/head";
 import Link from "next/link";
-import { NextSeo } from "next-seo";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Sponsors from "../components/Sponsors";
@@ -12,27 +11,6 @@ import Pricing from "../components/Pricing";
 export default function Home() {
   return (
     <div className="bg-white dark:bg-black">
-      {/* <NextSeo
-        title="Plutonium"
-        description="Plutonium – where darkness meets the web."
-        canonical="https://plutonium.vercel.app/"
-        openGraph={{
-          url: "https://plutonium.vercel.app/",
-          title: "Plutonium",
-          description: "Plutonium – where darkness meets the web.",
-          images: [
-            {
-              url: "blob:https://og-playground.vercel.app/8baff750-c782-4a04-b198-7ee3dd1e1974",
-            },
-          ],
-          site_name: "Plutonium",
-        }}
-        twitter={{
-          handle: "@saurishhh",
-          site: "https://plutonium.vercel.app/",
-          cardType: "summary_large_image",
-        }}
-      />
 
       <Header />
       <section className="relative">
@@ -60,13 +38,11 @@ export default function Home() {
                 <span className="flex justify-center">GitHub Link</span>
               </Link>
               <br className="sm:hidden" />
-              <Link href="404">
-                <Link
+              <Link 
                   className="inline-flex items-center px-5 py-3 mt-2 ml-0 text-sm font-medium text-gray-700 transition duration-300 border rounded shadow dark:hover:border-gray-500 hover:shadow-md md:ml-2 dark:text-gray-300"
-                  aria-label="learn more"
-                >
+                  aria-label="learn more" 
+                  href="404">
                   <span className="flex justify-center">See a Demo</span>
-                </Link>
               </Link>
             </div>
           </div>
@@ -93,7 +69,7 @@ export default function Home() {
       <Sponsors />
       <Features />
       <Pricing />
-      <Footer /> */}
+      <Footer />
     </div>
   );
 }
