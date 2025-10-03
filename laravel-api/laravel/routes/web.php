@@ -20,4 +20,12 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
+
+Route::post('/spa/login',  [AuthenticatedSessionController::class, 'store'])
+    ->name('spa.login');
+Route::post('/spa/logout', [AuthenticatedSessionController::class, 'destroy'])
+    ->name('spa.logout');
+
+
 require __DIR__ . '/auth.php';

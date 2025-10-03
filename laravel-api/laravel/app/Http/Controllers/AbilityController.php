@@ -9,42 +9,49 @@ class AbilityController extends Controller
 {
     public function index()
     {
-        // trae user, reviews_count y promedio_puntaje por el $with / $withCount / appends del modelo
-        return Ability::query()->latest()->get();
+        return Ability::query()
+            ->with('user:id,name')
+            ->withCount('reviews')
+            ->latest()
+            ->get();
     }
 
-    public function store(Request $r)
+    public function show(Ability $habilidade)
     {
-        $data = $r->validate([
+        return $habilidade
+            ->load('user:id,name', 'reviews.user:id,name')
+            ->append('promedio_puntaje');
+    }
+
+    public function store(Request $request)
+    {
+        $data = $request->validate([
             'user_id'     => 'required|exists:users,id',
             'nombre'      => 'required|string|max:120',
             'descripcion' => 'nullable|string',
         ]);
 
         $ability = Ability::create($data);
+
         return response()->json($ability->fresh(), 201);
     }
 
-    public function show(Ability $habilidade) // tip: Laravel pluraliza en ruta; param se llama {habilidade}
+    public function update(Request $request, Ability $habilidade)
     {
-        // $habilidade ya viene con relaciones por $with
-        return $habilidade->load('reviews.user:id,name');
-    }
-
-    public function update(Request $r, Ability $habilidade)
-    {
-        $data = $r->validate([
+        $data = $request->validate([
             'nombre'      => 'sometimes|required|string|max:120',
             'descripcion' => 'nullable|string',
         ]);
 
         $habilidade->update($data);
+
         return $habilidade->fresh();
     }
 
     public function destroy(Ability $habilidade)
     {
         $habilidade->delete();
+
         return response()->noContent();
     }
 }
