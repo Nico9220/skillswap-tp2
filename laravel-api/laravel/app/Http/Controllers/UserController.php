@@ -9,6 +9,7 @@ class UserController extends Controller
 {
     public function index()
     {
-        return User::all(); // devuelve todos los usuarios en JSON
+        return User::all();
+        // devuelve todos los usuarios en JSON
     }
 }

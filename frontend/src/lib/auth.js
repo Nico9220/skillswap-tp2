@@ -1,7 +1,7 @@
+// src/lib/auth.js
 export const APP = 'http://localhost:8000'
 export const API = 'http://localhost:8000/api'
 
-// helpers cookie CSRF
 function getCookie(name) {
   if (typeof document === 'undefined') return ''
   return document.cookie.split('; ')
@@ -11,34 +11,48 @@ function xsrf() {
   const raw = getCookie('XSRF-TOKEN')
   return raw ? decodeURIComponent(raw) : ''
 }
-
 export async function csrf() {
   await fetch(`${APP}/sanctum/csrf-cookie`, { credentials: 'include' })
 }
 
 export async function login(email, password) {
   await csrf()
-  const res = await fetch(`${APP}/spa/login`, {     // 👈 nuevo endpoint
+  const res = await fetch(`${APP}/spa/login`, {
     method: 'POST',
     credentials: 'include',
     headers: {
-      'Content-Type': 'application/json',
       'Accept': 'application/json',
+      'Content-Type': 'application/json',
       'X-Requested-With': 'XMLHttpRequest',
       'X-XSRF-TOKEN': xsrf(),
     },
-    body: JSON.stringify({ email, password }),
+    body: JSON.stringify({ email, password })
+  })
+  if (!res.ok) throw new Error('Credenciales inválidas')
+}
+
+export async function register(name, email, password, password_confirmation) {
+  await csrf()
+  const res = await fetch(`${APP}/spa/register`, {
+    method: 'POST',
+    credentials: 'include',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      'X-Requested-With': 'XMLHttpRequest',
+      'X-XSRF-TOKEN': xsrf(),
+    },
+    body: JSON.stringify({ name, email, password, password_confirmation })
   })
   if (!res.ok) {
-    let msg = `Error ${res.status}`
-    try { const d = await res.json(); if (d?.message) msg = d.message } catch {}
+    let msg = 'No se pudo registrar'
+    try { const d = await res.json(); msg = d.message || msg } catch {}
     throw new Error(msg)
   }
-  return true
 }
 
 export async function logout() {
-  await fetch(`${APP}/spa/logout`, {               // 👈 nuevo endpoint
+  await fetch(`${APP}/spa/logout`, {
     method: 'POST',
     credentials: 'include',
     headers: {
@@ -54,6 +68,5 @@ export async function currentUser() {
     credentials: 'include',
     headers: { 'Accept': 'application/json' },
   })
-  if (!res.ok) return null
-  return res.json()
+  return res.ok ? res.json() : null
 }

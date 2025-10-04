@@ -26,32 +26,43 @@ class AbilityController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            'user_id'     => 'required|exists:users,id',
-            'nombre'      => 'required|string|max:120',
-            'descripcion' => 'nullable|string',
+            'nombre'      => ['required', 'string', 'max:120'],
+            'descripcion' => ['nullable', 'string'],
         ]);
 
-        $ability = Ability::create($data);
+        $ability = Ability::create([
+            'user_id'     => $request->user()->id,    // ← del usuario autenticado
+            'nombre'      => $data['nombre'],
+            'descripcion' => $data['descripcion'] ?? null,
+        ]);
 
-        return response()->json($ability->fresh(), 201);
+        return response()->json(
+            $ability->fresh()->load('user:id,name')->loadCount('reviews'),
+            201
+        );
     }
 
     public function update(Request $request, Ability $habilidade)
     {
+        if ($request->user()->id !== $habilidade->user_id) {
+            abort(403, 'No autorizado');
+        }
         $data = $request->validate([
-            'nombre'      => 'sometimes|required|string|max:120',
-            'descripcion' => 'nullable|string',
+            'nombre'      => ['sometimes', 'required', 'string', 'max:120'],
+            'descripcion' => ['nullable', 'string'],
         ]);
 
         $habilidade->update($data);
 
-        return $habilidade->fresh();
+        return $habilidade->fresh()->load('user:id,name')->loadCount('reviews');
     }
 
-    public function destroy(Ability $habilidade)
+    public function destroy(Request $request, Ability $habilidade)
     {
+        if ($request->user()->id !== $habilidade->user_id) {
+            abort(403, 'No autorizado');
+        }
         $habilidade->delete();
-
         return response()->noContent();
     }
 }

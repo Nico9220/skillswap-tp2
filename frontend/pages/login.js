@@ -1,4 +1,3 @@
-// frontend/pages/login.js
 import { useState } from 'react'
 import { useRouter } from 'next/router'
 import { login, logout, currentUser } from '../src/lib/auth'
@@ -15,7 +14,7 @@ export default function LoginPage() {
     setError('')
     setLoading(true)
     try {
-      await login(email, password)      // 👈 login() YA hace csrf-cookie + POST /login
+      await login(email, password)
       const me = await currentUser()
       if (me) router.push('/habilidades')
       else setError('No se pudo obtener la sesión.')
