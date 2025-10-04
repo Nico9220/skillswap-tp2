@@ -64,9 +64,16 @@ export async function logout() {
 }
 
 export async function currentUser() {
-  const res = await fetch(`${API}/user`, {
-    credentials: 'include',
-    headers: { 'Accept': 'application/json' },
-  })
-  return res.ok ? res.json() : null
+  try {
+    const res = await fetch(`${API}/session`, {
+      credentials: 'include',
+      headers: { 'Accept': 'application/json' },
+    })
+    if (!res.ok) return null
+    const data = await res.json()
+    return data.user ?? null
+  } catch {
+    return null
+  }
 }
+
