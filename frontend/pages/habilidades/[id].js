@@ -1,7 +1,8 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import ReviewModal from '../../src/components/ReviewModal'   // ajustá la ruta si es distinto
+import ReviewModal from '../../src/components/ReviewModal'  
+import { currentUser } from '../../src/lib/auth'            
 
 const API = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000/api'
 
@@ -27,6 +28,12 @@ function Stars({ value = 0 }) {
 export default function Habilidad({ ability }) {
   const router = useRouter()
   const [openReview, setOpenReview] = useState(false)
+
+  // 👇 NUEVO: detectar si hay sesión
+  const [me, setMe] = useState(null)
+  useEffect(() => {
+    currentUser().then(setMe).catch(() => setMe(null))
+  }, [])
 
   return (
     <div className="min-h-screen bg-white dark:bg-black">
@@ -59,12 +66,20 @@ export default function Habilidad({ ability }) {
             </div>
 
             <div className="shrink-0 space-x-2">
-              <button
-                onClick={() => setOpenReview(true)}
-                className="inline-flex items-center rounded-lg bg-slate-900 text-white dark:bg-white dark:text-black px-4 py-2 text-sm font-medium hover:opacity-90"
-              >
-                Dejar reseña
-              </button>
+              {/* 👇 Condicional según sesión */}
+              {me ? (
+                <button
+                  onClick={() => setOpenReview(true)}
+                  className="inline-flex items-center rounded-lg bg-slate-900 text-white dark:bg-white dark:text-black px-4 py-2 text-sm font-medium hover:opacity-90"
+                >
+                  Dejar reseña
+                </button>
+              ) : (
+                <span className="text-xs text-slate-500 dark:text-slate-400">
+                  Iniciá sesión para reseñar
+                </span>
+              )}
+
               <Link
                 href="/#cursos"
                 className="inline-flex items-center rounded-lg border border-slate-300/60 dark:border-white/20 px-4 py-2 text-sm text-slate-700 dark:text-slate-200 hover:bg-slate-50/80 dark:hover:bg-white/5"
@@ -101,12 +116,19 @@ export default function Habilidad({ ability }) {
           ) : (
             <div className="mt-4 rounded-xl border border-dashed border-slate-300/70 dark:border-white/15 p-8 text-center">
               <p className="text-slate-600 dark:text-slate-300">Aún no hay reseñas.</p>
-              <button
-                onClick={() => setOpenReview(true)}
-                className="mt-4 inline-flex items-center rounded-lg bg-slate-900 text-white dark:bg-white dark:text-black px-4 py-2 text-sm font-medium hover:opacity-90"
-              >
-                Escribir la primera
-              </button>
+              {/* 👇 Solo CTA si hay sesión */}
+              {me ? (
+                <button
+                  onClick={() => setOpenReview(true)}
+                  className="mt-4 inline-flex items-center rounded-lg bg-slate-900 text-white dark:bg-white dark:text-black px-4 py-2 text-sm font-medium hover:opacity-90"
+                >
+                  Escribir la primera
+                </button>
+              ) : (
+                <span className="mt-4 block text-xs text-slate-500 dark:text-slate-400">
+                  Iniciá sesión para escribir una reseña
+                </span>
+              )}
             </div>
           )}
         </section>
@@ -118,7 +140,7 @@ export default function Habilidad({ ability }) {
         onClose={() => setOpenReview(false)}
         onOk={() => {
           setOpenReview(false)
-          router.replace(router.asPath) // refresca SSR sin parpadear
+          router.replace(router.asPath) // refresca el SSR sin parpadeo
         }}
       />
     </div>

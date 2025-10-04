@@ -73,12 +73,11 @@ export default function Header() {
             >
               Cursos
             </Link>
-            <Link
-              href="/#habilidades"
-              className="text-black transition duration-300 dark:text-gray-300 hover:text-gray-300"
-            >
-              Habilidades
-            </Link>
+            {me && (
+  <Link href="/#habilidades" className="text-black dark:text-gray-300 hover:text-gray-300">
+    Habilidades
+  </Link>
+)}
             <Link
               href="/PlantillaDefault"
               className="text-black transition duration-300 dark:text-gray-300 hover:text-gray-300"

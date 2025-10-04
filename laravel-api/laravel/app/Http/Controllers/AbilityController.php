@@ -7,13 +7,18 @@ use Illuminate\Http\Request;
 
 class AbilityController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        return Ability::query()
+        $q = Ability::query()
             ->with('user:id,name')
-            ->withCount('reviews')
-            ->latest()
-            ->get();
+            ->withCount('reviews');
+
+        // Si piden solo las del usuario logueado
+        if ($request->boolean('mine') && $request->user()) {
+            $q->where('user_id', $request->user()->id);
+        }
+
+        return $q->latest()->get();
     }
 
     public function show(Ability $habilidade)
