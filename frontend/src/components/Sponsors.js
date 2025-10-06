@@ -1,89 +1,37 @@
 export default function Sponsors() {
   return (
-    <section className="pb-10" id="sponsors">
-      <div className="px-4 pb-16 mx-auto max-w-7xl sm:px-6 lg:px-8">
-        <h1 className="mb-8 text-2xl font-bold tracking-normal text-center text-gray-800 md:leading-tight md:tracking-normal dark:text-gray-200 md:text-4xl">
-          Sponsored by forward-thinking companies.
-        </h1>
-        <p className="max-w-md mx-auto mb-12 text-lg text-gray-600 dark:text-gray-400 text-left md:text-center md:text-lg">
-          <b>Note:</b> we have removed any fake sponsors from Plutonium. The
-          following are random SVG logo samples.
-        </p>
-        <div className="grid grid-cols-2 gap-8 mt-6 md:grid-cols-4">
-          <div className="flex justify-center col-span-1 md:col-span-2 lg:col-span-1">
-            <svg
-              data-name="Layer 1"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 200 200"
-              className="mt-6 text-gray-400 transition duration-300 fill-current h-14 filter grayscale hover:filter-none hover:grayscale-0"
-            >
-              <path fill="currentColor" d="M0 0h200v200H0z" />
-              <text
-                transform="translate(16.21 144.88)"
-                fill="#fff"
-                fontSize="165"
-                fontFamily="Osaka"
-              >
-                nd
-              </text>
-            </svg>
-          </div>
-          <div className="flex justify-center col-span-1 md:col-span-2 lg:col-span-1">
-            <svg
-              data-name="Layer 1"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 200 200"
-              className="mt-6 text-gray-400 transition duration-300 fill-current h-14 filter grayscale hover:filter-none hover:grayscale-0"
-            >
-              <path fill="currentColor" d="M0 0h200v200H0z" />
-              <text
-                transform="translate(16.21 144.88)"
-                fill="#fff"
-                fontSize="165"
-                fontFamily="Osaka"
-              >
-                nd
-              </text>
-            </svg>
-          </div>
-          <div className="flex justify-center col-span-1 md:col-span-2 lg:col-span-1">
-            <svg
-              data-name="Layer 1"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 200 200"
-              className="mt-6 text-gray-400 transition duration-300 fill-current h-14 filter grayscale hover:filter-none hover:grayscale-0"
-            >
-              <path fill="currentColor" d="M0 0h200v200H0z" />
-              <text
-                transform="translate(16.21 144.88)"
-                fill="#fff"
-                fontSize="165"
-                fontFamily="Osaka"
-              >
-                nd
-              </text>
-            </svg>
-          </div>
-          <div className="flex justify-center col-span-1 md:col-span-2 lg:col-span-1">
-            <svg
-              data-name="Layer 1"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 200 200"
-              className="mt-6 text-gray-400 transition duration-300 fill-current h-14 filter grayscale hover:filter-none hover:grayscale-0"
-            >
-              <path fill="currentColor" d="M0 0h200v200H0z" />
-              <text
-                transform="translate(16.21 144.88)"
-                fill="#fff"
-                fontSize="165"
-                fontFamily="Osaka"
-              >
-                nd
-              </text>
-            </svg>
-          </div>
-        </div>
+    <section className="mt-10">
+  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+    
+    {/*  Integrante 1  */}
+    <div className="flex flex-col items-center text-center bg-gray-800/70 rounded-xl p-6 shadow-lg hover:shadow-2xl hover:scale-105 transition-all duration-300 ease-out backdrop-blur-sm">
+      <div className="w-24 h-24 flex items-center justify-center rounded-full bg-gray-700 text-3xl font-bold text-white mb-4">
+        Dante
       </div>
-    </section>
+      <h3 className="text-xl font-semibold text-gray-100">Dante Avila</h3>
+      <p className="text-gray-400 text-sm mt-2">CMS</p>
+    </div>
+
+    {/*  Integrante 2  */}
+    <div className="flex flex-col items-center text-center bg-gray-800/70 rounded-xl p-6 shadow-lg hover:shadow-2xl hover:scale-105 transition-all duration-300 ease-out backdrop-blur-sm">
+      <div className="w-24 h-24 flex items-center justify-center rounded-full bg-gray-700 text-3xl font-bold text-white mb-4">
+        Nico
+      </div>
+      <h3 className="text-xl font-semibold text-gray-100">Nicolás Caretta</h3>
+      <p className="text-gray-400 text-sm mt-2">Framework</p>
+    </div>
+
+    {/*  Integrante 3  */}
+    <div className="flex flex-col items-center text-center bg-gray-800/70 rounded-xl p-6 shadow-lg hover:shadow-2xl hover:scale-105 transition-all duration-300 ease-out backdrop-blur-sm">
+      <div className="w-24 h-24 flex items-center justify-center rounded-full bg-gray-700 text-3xl font-bold text-white mb-4">
+        Diego
+      </div>
+      <h3 className="text-xl font-semibold text-gray-100">Diego Marchandon</h3>
+      <p className="text-gray-400 text-sm mt-2">Informe</p>
+    </div>
+
+  </div>
+</section>
+
   );
 }

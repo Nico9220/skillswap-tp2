@@ -31,7 +31,11 @@ export default function ReviewModal({ open, onClose, abilityId, onOk }) {
         },
         body: JSON.stringify({ ability_id: abilityId, puntaje, comentario })
       });
-      if (!res.ok) throw new Error('No se pudo enviar la reseña');
+      if (!res.ok){
+        const errorData = await res.json(); //leo el mensaje del backend
+        throw new Error(errorData.message || 'No se pudo enviar la reseña');
+
+      } 
       setComentario(''); setPuntaje(5);
       onOk?.(); onClose();
     } catch (e) { setError(e.message || 'Error'); }
@@ -43,9 +47,9 @@ export default function ReviewModal({ open, onClose, abilityId, onOk }) {
       {error && <div className="mb-3 text-sm rounded-xl bg-rose-50 border border-rose-200 text-rose-700 px-3 py-2 dark:bg-rose-950/30 dark:border-rose-900">{error}</div>}
       <form onSubmit={submit} className="space-y-3">
         <div className="flex items-center gap-3">
-          <span className="text-sm">Puntaje</span>
+          <span className="text-sm text-white">Puntaje</span>
           <select
-            className="rounded-xl border px-2 py-1 bg-white/90 dark:bg-slate-800 border-slate-200 dark:border-slate-700"
+            className="rounded-xl text-white border px-2 py-1 bg-white/90 dark:bg-slate-800 border-slate-200 dark:border-slate-700"
             value={puntaje}
             onChange={(e)=>setPuntaje(Number(e.target.value))}
           >

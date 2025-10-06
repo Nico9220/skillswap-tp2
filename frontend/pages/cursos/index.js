@@ -3,7 +3,7 @@ const API = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000/api'
 export default function Cursos({ items }) {
   return (
     <section className="py-12 max-w-6xl mx-auto px-4">
-      <h1 className="text-2xl font-bold mb-6">Cursos</h1>
+      <h1 className="text-2xl  font-bold mb-6">Cursos</h1>
       <div className="grid gap-4 md:grid-cols-3">
         {items.map(a => (
           <a key={a.id} href={`/habilidades/${a.id}`} className="block p-5 rounded-xl shadow bg-white hover:shadow-md transition">

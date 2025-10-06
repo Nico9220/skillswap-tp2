@@ -38,7 +38,7 @@ export default function Header() {
   if (!mounted) return null;
 
   return (
-    <header className="w-full sticky-nav">
+    <header className="w-full sticky top-0 z-50 bg-gradient-to-b from-transparent to-gray-900">
       <div className="flex flex-col flex-wrap max-w-5xl p-2.5 mx-auto md:flex-row">
         <div className="flex flex-row items-center justify-between p-2 md:p-1">
           <Link
@@ -87,7 +87,7 @@ export default function Header() {
           </div>
 
           {/* theme toggle */}
-          <button
+          {/* <button
             aria-label="Toggle Dark Mode"
             type="button"
             className="w-10 h-10 p-3 ml-5 mr-0 bg-gray-200 rounded md:ml-0 md:mr-5 dark:bg-gray-800"
@@ -108,7 +108,7 @@ export default function Header() {
                 )}
               </svg>
             )}
-          </button>
+          </button> */}
 
           {/* acciones auth */}
           {!me ? (
@@ -130,13 +130,13 @@ export default function Header() {
             <div className="flex items-center gap-3 pr-2">
               <Link
                 href="/habilidades/nueva"
-                className="px-3 py-1.5 rounded border transition hover:bg-gray-50 dark:hover:bg-slate-800"
+                className="px-3 py-1.5 text-white rounded border transition hover:bg-gray-50 dark:hover:bg-slate-800"
               >
                 Nueva habilidad
               </Link>
               <button
                 onClick={async () => { await logout(); setMe(null); }}
-                className="px-3 py-1.5 rounded border transition hover:bg-gray-50 dark:hover:bg-slate-800"
+                className="px-3 text-white py-1.5 rounded border transition hover:bg-gray-50 dark:hover:bg-slate-800"
               >
                 Salir
               </button>

@@ -24,7 +24,7 @@ export default function CursosSection() {
 
   return (
     <section id="cursos" className="py-16 scroll-mt-24 max-w-6xl mx-auto px-4">
-      <h2 className="text-2xl font-bold mb-6">Cursos</h2>
+      <h2 className="text-2xl text-white font-bold mb-6">Cursos</h2>
 
       {loading ? <p>Cargando…</p> : (
         <div className="grid gap-4 md:grid-cols-3">

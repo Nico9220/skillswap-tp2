@@ -24,7 +24,7 @@ const Feature = () => {
 
 export default function Habilidades() {
   return (
-    <section id="habilidades" className="py-12">
+    <section id="habilidades" className="py-12 ">
       <div className="max-w-xl px-4 py-12 mx-auto sm:px-6 lg:max-w-6xl lg:px-8">
         <h1 className="mb-8 text-2xl font-bold tracking-normal text-center text-gray-800 md:leading-tight md:tracking-normal dark:text-gray-200 md:text-4xl">
           All with{" "}

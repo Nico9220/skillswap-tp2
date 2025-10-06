@@ -8,14 +8,14 @@ export default function Footer() {
     <footer className="text-black dark:text-gray-300 body-font">
       <div className="container flex flex-col items-center px-10 pb-8 mx-auto border-t border-purple-600 dark:border-purple-300 sm:flex-row">
         <Link href="/" className="flex items-center justify-center mt-3 text-xl font-medium title-font md:ml-3 md:justify-start">
-          PLUTONIUM
+          SKILLSWAP
         </Link>
         <div className="invisible h-5 mt-3 ml-4 border-l border-black md:visible dark:border-gray-300"></div>
         <Link
           className="flex items-center justify-center mt-3 font-medium title-font md:justify-start"
           href={"/"}
         >
-          <span className="text-sm md:ml-5">Edit on GitHub</span>
+          <span className="text-sm md:ml-5">© 2025. Todos los derechos y los izquierdos reservados.</span>
         </Link>
         <span className="inline-flex justify-center mt-4 sm:ml-auto sm:mt-3 sm:justify-start">
           <Link

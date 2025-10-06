@@ -36,10 +36,10 @@ export default function HabilidadesSection() {
   return (
     <section id="habilidades" className="py-16 scroll-mt-24 max-w-6xl mx-auto px-4">
       <div className="flex items-center justify-between mb-6">
-        <h2 className="text-2xl font-bold">Mis habilidades</h2>
+        <h2 className="text-2xl text-white font-bold">Mis habilidades</h2>
         {me && (
           <button onClick={() => setOpenNew(true)}
-            className="rounded-md border px-3 py-1.5 hover:bg-gray-50 dark:hover:bg-slate-800">
+            className="rounded-md text-white border px-3 py-1.5 hover:bg-gray-50 dark:hover:bg-slate-800">
             Agregar
           </button>
         )}

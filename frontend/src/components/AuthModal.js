@@ -40,22 +40,22 @@ export default function AuthModal({ open, onClose, mode = 'login' }) {
       <form onSubmit={handleSubmit} className="space-y-3">
         {mode === 'register' && (
           <div>
-            <Label htmlFor="name">Nombre</Label>
-            <Input id="name" value={name} onChange={(e)=>setName(e.target.value)} required />
+            <Label className="text-gray-100" htmlFor="name">Nombre</Label>
+            <Input className="text-gray-100" id="name" value={name} onChange={(e)=>setName(e.target.value)} required />
           </div>
         )}
         <div>
-          <Label htmlFor="email">Email</Label>
-          <Input id="email" type="email" value={email} onChange={(e)=>setEmail(e.target.value)} required />
+          <Label className="text-gray-100" htmlFor="email">Email</Label>
+          <Input className="text-gray-400" id="email" type="email" value={email} onChange={(e)=>setEmail(e.target.value)} required />
         </div>
         <div>
-          <Label htmlFor="pass">Contraseña</Label>
-          <Input id="pass" type="password" value={password} onChange={(e)=>setPassword(e.target.value)} required />
+          <Label className="text-gray-100" htmlFor="pass">Contraseña</Label>
+          <Input className="text-gray-400" id="pass" type="password" value={password} onChange={(e)=>setPassword(e.target.value)} required />
         </div>
         {mode === 'register' && (
           <div>
-            <Label htmlFor="confirm">Confirmar contraseña</Label>
-            <Input id="confirm" type="password" value={confirm} onChange={(e)=>setConfirm(e.target.value)} required />
+            <Label className="text-gray-100" htmlFor="confirm">Confirmar contraseña</Label>
+            <Input className="text-gray-400" id="confirm" type="password" value={confirm} onChange={(e)=>setConfirm(e.target.value)} required />
           </div>
         )}
         <Button type="submit" disabled={loading} className="w-full">
