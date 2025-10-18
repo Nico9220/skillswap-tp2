@@ -4,7 +4,7 @@ import Usuarios from "@/components/Usuarios";
 import Head from "next/head";
 import Link from "next/link";
 import Footer from "../../components/Footer";
-import Sponsors from "../../components/Sponsors";
+// import Sponsors from "../../components/Sponsors";
 import { useState, useEffect } from "react";
 import { useTheme } from "next-themes";
 
@@ -207,7 +207,7 @@ export default function PlantillaDefault() {
           </div>
         </div>
       </section>
-      <Sponsors />
+      {/* <Sponsors /> */}
       {/* Features.js (Nosotros.js) */}
       <section id="features" className="py-12">
       <div className="max-w-xl px-4 py-12 mx-auto sm:px-6 lg:max-w-6xl lg:px-8">
