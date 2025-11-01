@@ -1,8 +1,14 @@
-export const API = process.env.NEXT_PUBLIC_API_URL || 'http://127.0.0.1:8000/api'
+import { API } from './auth';
 
-export async function apiGet(path) {
-  const res = await fetch(`${API}${path}`, { cache: 'no-store' })
-  if (!res.ok) throw new Error(`GET ${path} -> ${res.status}`)
-  return res.json()
+async function getJSON(url) {
+  const r = await fetch(url, { credentials: 'include', headers: { Accept: 'application/json' } });
+  if (!r.ok) throw new Error(String(r.status));
+  return r.json();
 }
+
+export const validarEmail = (email) =>
+  getJSON(`${API}/integraciones/validar-email?email=${encodeURIComponent(email)}`);
+
+export const sugerirHabilidades = (q) =>
+  getJSON(`${API}/integraciones/sugerir-habilidades?q=${encodeURIComponent(q)}`);
 

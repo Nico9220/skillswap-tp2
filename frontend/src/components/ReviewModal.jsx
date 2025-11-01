@@ -56,7 +56,7 @@ export default function ReviewModal({ open, onClose, abilityId, onOk }) {
             {[5,4,3,2,1].map(n => <option key={n} value={n}>{n}</option>)}
           </select>
         </div>
-        <Textarea placeholder="Comentario…" value={comentario} onChange={(e)=>setComentario(e.target.value)} />
+        <Textarea className="text-white" placeholder="Comentario…" value={comentario} onChange={(e)=>setComentario(e.target.value)} />
         <Button disabled={loading} className="w-full">{loading ? 'Enviando…' : 'Enviar'}</Button>
       </form>
     </Modal>

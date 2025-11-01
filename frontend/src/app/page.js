@@ -33,12 +33,12 @@ export default function Home() {
               >
                 GitHub Link
               </Link>
-              <Link
+              {/* <Link
                 className="inline-flex items-center px-5 py-3 mt-2 ml-2 text-sm font-medium text-gray-700 transition duration-300 border rounded shadow dark:hover:border-gray-500 hover:shadow-md dark:text-gray-300"
                 href="/404"
               >
                 CMS Link
-              </Link>
+              </Link> */}
             </div>
           </div>
 
